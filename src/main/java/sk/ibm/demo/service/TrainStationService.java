@@ -33,7 +33,11 @@ public class TrainStationService {
     }
 
     // next station
-    sb.append("Next stop: " + config.train().nextStation());
+    sb.append("Next stop: " + config.train().niceMsg() + System.lineSeparator());
+
+    if (config.adminPwd().isPresent()) {
+      sb.append("Admin pwd: " + config.adminPwd().get());
+    }
 
     return sb.toString();
   }

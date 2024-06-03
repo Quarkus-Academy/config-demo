@@ -15,6 +15,8 @@ public interface StationConfig {
   @WithName("max-delay-in-minutes")
   Optional<Integer> maxDelay();
 
+  Optional<String> adminPwd();
+
   Train train();
 
   public interface Train {
@@ -24,7 +26,8 @@ public interface StationConfig {
     @WithDefault("n/a")
     String nextStation();
 
-  }
+    String niceMsg();
 
+  }
 
 }
