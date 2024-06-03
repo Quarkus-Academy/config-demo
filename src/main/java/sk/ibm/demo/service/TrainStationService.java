@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import sk.ibm.demo.config.StationConfig;
 import java.util.Optional;
+import io.quarkus.logging.Log;
 
 @ApplicationScoped
 public class TrainStationService {
@@ -19,6 +20,7 @@ public class TrainStationService {
     // first class
     if(config.train().firstClassAvailable()) {
       sb.append("First class now available! Please consider ticked upgrade." + System.lineSeparator());
+      Log.info("First class is not available");
     }
 
     // reconstruction
@@ -30,6 +32,7 @@ public class TrainStationService {
     if (config.maxDelay().isPresent()) {
       Optional<Integer> maxDelay = config.maxDelay();
       sb.append("Max delay: " + maxDelay.get() + " min" + System.lineSeparator());
+      Log.debugv("Max delay: {}", maxDelay.get());
     }
 
     // next station
@@ -37,6 +40,7 @@ public class TrainStationService {
 
     if (config.adminPwd().isPresent()) {
       sb.append("Admin pwd: " + config.adminPwd().get());
+      Log.tracev("Admin pwd is present: {}", config.adminPwd().get());
     }
 
     return sb.toString();
